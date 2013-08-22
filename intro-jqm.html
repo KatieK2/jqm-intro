@@ -1,0 +1,348 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.js. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.js --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.js --></h2>
+      <p data-config-presenter><!-- populated from slide_config.js --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>What's jQuery Mobile?</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Builds on jQuery core library</li>
+        <li>Free and open-source</li>
+        <li>Framework for building mobile sites and apps using web code
+          <ul>
+            <li>Not just a JS library, but a UI library</li>
+            <li>Pre-built components, styles / themes and actions</li>
+            <li>HTML5, CSS3 and JS</li>
+            <li>Full support for iOS, Android, Blackberry, Windows phone, WebOS</li>
+            <li>Graded support for <a href="http://jquerymobile.com/demos/1.2.1/docs/about/platforms.html">many more</a></li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Why jQuery Mobile?</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Same reason as for any library / plug-in / gem &mdash; leverage existing well&ndash;vetted codebase to quickly <strong>get things done</strong></li>
+        <li>Mobile browsers (Android and iOS) are more likely to support bleeding edge effects</li>
+        <li>Quick and dirty mobile-focused site when full site is old&ndash;fashioned / Flash&ndash;based</li>
+        <li>Together with other apps and frameworks, make mobile <strong>apps</strong>!</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Examples</h2>
+    </hgroup>
+    <article class="larger">
+      <ul>
+        <li><a href="images/gallery-stanford.png">Mobile Site: Stanford.edu</a></li>
+        <li><a href="images/gallery-wdw.png">Mobile site: Walt Disney World</a></li>
+        <li><a href="images/gallery-kapicu.jpg">App: Kapicu</a></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>jQuery Mobile</h2>
+      <h3>Prerequisites</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="html5">
+&lt;link rel="stylesheet" 
+    href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" /&gt;
+&lt;script src="http://code.jquery.com/jquery-1.7.1.min.js"&gt;&lt;/script&gt;
+&lt;script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"&gt;&lt;/script&gt;</pre>
+    </article>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>For apps, include raw source rather than hot-linking for off-line access</li>
+        </ul>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Mobile App - Books</h2>
+    </hgroup>
+    <article>
+      <a href="intro-jqm-books.html" class="image"><img src="images/books-intro.png" alt="Books" title="Books"></a>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>jQuery Mobile</h2>
+      <h3>Structure</h3>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="html5">
+<b>&lt;div data-role="page" data-theme="b" id="page-books-list"&gt;</b>
+  &lt;div data-role="header" data-theme="b"&gt;
+    &lt;h1&gt;My Books&lt;/h1&gt;
+    &lt;a href="#page-new-book" id="btn-compose" ... &gt;Add&lt;/a&gt;
+  &lt;/div&gt;
+  ...
+<b>&lt;/div&gt;</b>
+
+<b>&lt;div data-role="page" data-theme="b" id="page-new-book"&gt;</b>
+  &lt;div data-role="header" data-theme="b"&gt;
+    &lt;h1&gt;Add a New Book&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div data-role="content"&gt;
+    ...
+    &lt;a href="#page-books-list" data-role="button" data-theme="c" data-inline="true"&gt;Cancel&lt;/a&gt;
+    &lt;button id="create-button" data-inline="true"&gt;Create&lt;/button&gt;
+  &lt;/div&gt;
+<b>&lt;/div&gt;</b></pre>
+    </article>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Single page layout</li>
+          <li>Minimal markup, basic semantics and a few <code>data-</code> attributes</li>
+          <li>First <code>&lt;div&gt;</code> in markup is "default"</li>
+          <li>jQm adds many more <code>data-</code> attributes when processing the page
+            <ul>
+              <li>Simplifies HTML maintenance - see only what you need to</li>
+              <li>For many mobile browsers, adding attributes via JS is better than including them in the HTML</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>jQuery Mobile</h2>
+      <h3>Attributes</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="html5">
+&lt;div <b>data-role="page"</b> <b>data-theme="b"</b> id="page-books-list"&gt;
+  &lt;div <b>data-role="header"</b> <b>data-theme="b"</b>&gt;
+    &lt;h1&gt;My Books&lt;/h1&gt;
+    &lt;a href="#page-new-book" id="btn-compose" ... &gt;Add&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div <b>data-role="content"</b>&gt;
+    &lt;ul id="books-list" <b>data-role="listview"</b> data-inset="false" &gt;
+      &lt;li&gt;&lt;h3&gt;First Title&lt;/h3&gt;&lt;p&gt;First author&lt;/p&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;h3&gt;Second Title&lt;/h3&gt;&lt;p&gt;Second author&lt;/p&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </article>
+    <aside class="note">
+      <section>
+        <ul>
+          <li><code>data-role</code> determines functionality and appearance</li>
+          <li><code>data-theme</code> offers easy access to different themes</li>
+        </ul>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>jQuery Mobile</h2>
+      <h3>Dialogs &amp; Links</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="html5">
+&lt;div data-role="page" data-theme="b" id="page-books-list"&gt;
+  &lt;a <b>href="#page-new-book"</b> ... <b>data-rel="dialog"</b>&gt;Add&lt;/a&gt;
+...
+&lt;/div&gt;
+
+&lt;div data-role="page" data-theme="b" <b>id="page-new-book"</b>&gt;
+    ...
+    &lt;div data-role="content"&gt;
+        &lt;form&gt;
+            ...
+        &lt;/form&gt;    
+        &lt;a href="#page-books-list" data-role="button"...&gt;Cancel&lt;/a&gt;
+        &lt;button id="create-button" ...&gt;Create&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>jQuery Mobile Helpers</h2>
+    </hgroup>
+    <article class="smaller">
+      <dl>
+        <dt>Apigee</dt>
+        <dd>API to manage cloud data using JSON calls.<br />
+          <a href="http://apigee.com/">http://apigee.com/</a><br />
+          Free for non-enterprise use, sign-up required.</dd>
+        <dt>Codiqa</dt>
+        <dd>Web app to quickly mock up jQuery Mobile layouts.<br />
+          <a href="http://www.codiqa.com/">http://www.codiqa.com/</a><br />
+          Free trial, sign up required.</dd>
+        <dt>Apache Cordova (PhoneGap)</dt>
+        <dd>Provides a full screen browser <em>wrapper</em> for iOS apps. Phone Gap is the "productized" version of the open-source Apache Cordova.<br />
+          <a href="http://phonegap.com/install/">http://phonegap.com/install/</a><br />
+          Free and open source, no sign up.</dd>
+        <dt>Xcode</dt>
+        <dd>Apple's IDE for iOS</br />
+          <a href="https://developer.apple.com/xcode/">https://developer.apple.com/xcode/</a><br />
+          Free, OSX only.</dd>
+      </dl>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Apigee API</h2>
+      <h3>Initialization</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="html5">
+&lt;script src="https://apigee.com/usergrid/sdk/usergrid.0.10.5.js"&gt;&lt;/script&gt;</pre>
+      <pre class="prettyprint" data-lang="javascript">
+// Initialize APIgee SDK
+var apigee = new Usergrid.Client({
+    orgName:'katiek', // apigee.com username
+    appName:'sandbox' // app name
+});
+// A Collection object that will be used to hold the list of books locally
+var my_books = new Usergrid.Collection( { "client":apigee, "type":"books" } );
+$(document).ready(function () {
+    $('#create-button').bind('click', createBook);
+});
+</pre>
+    </article>
+  <aside class="note">
+    <section>
+      <ul>
+        <li>JS library and cloud service for handing JSON data and calls</li>
+        <li><a href="https://apigee.com/usergrid/#katiek/sandbox/collections">https://apigee.com/usergrid/#katiek/sandbox/collections</a></li>
+      </ul>
+    </section>
+  </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Apigee API</h2>
+      <h3>Load Data</h3>
+    </hgroup>
+    <article class="small">
+      <pre class="prettyprint" data-lang="javascript">
+function loadBooks () {
+  my_books.fetch(
+    function () {
+      $('#books-list').empty();
+        <b>while ( my_books.hasNextEntity() ) {</b>
+          <b>var current_book = my_books.getNextEntity();</b>
+          // Output the book on the page
+          <b>$('#books-list').append('&lt;li&gt;&lt;h3&lt;'+current_book.get('title')+
+                    '&lt;/h3&gt;&lt;p&gt;'+current_book.get('author')+'&lt;/p&gt;&lt;/li&gt;');</b>
+        }
+    }
+  );
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Apigee API</h2>
+      <h3>Create Data</h3>
+    </hgroup>
+    <article class="small">
+      <pre class="prettyprint" data-lang="javascript">
+function createBook() {
+  new_book = { <b>"title":$("#title-field").val()</b>,
+               <b>"author":$("#author-field").val()</b> };
+  my_books.addEntity(new_book, function (error, response) {
+      if (error) {
+          alert('Write failed.');
+      } else {
+          <b>$("#title-field").val(""), $("#author-field").val("");</b>
+          loadBooks();
+          history.back();
+      }
+  });
+}</pre>
+    </article>
+  </slide>
+
+    <slide hidden>
+      <hgroup>
+        <h2>PhoneGap &amp; Xcode</h2>
+        <h3>Port to iOS</h3>
+      </hgroup>
+      <article class="small">
+        <p></p>
+        <ol>
+          <li>Open Terminal, and navigate to <code>~phonegap/lib/ios/bin</code></li>
+          <li>Type <code>./create [path-to-your-web-app]</code></li>
+          <li>In Terminal type <code>open ~/[path-to-your-web-app]</code> or just navigate to it in the Finder</li>
+          <li>Go to the <code>www</code> folder in the newly created project folder</li>
+          <li>Delete everything except cordova.js</li>
+          <li>Copy your web apps's indes, js, css and image assets here</li>
+          <li>Now you can open that new project in Xcode, and view it in the Xcode iOS simulator.  Testing on an iOS device requires an Apple developer account ($99/year).</li>
+        </ol>
+      </article>
+    </slide>
+
+  <slide class="segue dark nobackground">
+    <hgroup class="auto-fadein">
+      <h2>The End</h2>
+      <h3>Questions?</h3>
+    </hgroup>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+</body>
+</html>
